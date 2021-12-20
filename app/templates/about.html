@@ -1,0 +1,14 @@
+{% extends 'components/layout.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<h5>Welcome to the about page. This is a Flask API being made by the {{ classname }} class!</h5>
+<h5>The instructor for this class is {{ teacher }}.</h5>
+
+{% for person in students %}
+<p>Next student:</p>
+<p>{{ person }}</p>
+{% endfor %}
+
+{% endblock content %}

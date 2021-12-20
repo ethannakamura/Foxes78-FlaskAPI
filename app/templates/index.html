@@ -1,0 +1,14 @@
+{% extends 'components/layout.html' %}
+
+{% block title %}Homepage{% endblock title %}
+
+{% block content %}
+<h1>This page currently shows some data from an api call to the PokeAPI</h1>
+<h5>Current region: {{ name }}</h5>
+
+{% for pokemon in poke %}
+    <h5>Name: {{ pokemon['pokemon_species']['name'] }}</h5>
+    <p>    API URL: {{ pokemon['pokemon_species']['url'] }}</p>
+{% endfor %}
+
+{% endblock content %}

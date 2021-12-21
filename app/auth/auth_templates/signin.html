@@ -3,5 +3,24 @@
 {% block title %}Sign in{% endblock title %}
 
 {% block content %}
-<h1> This will be the sign-in page.</h1>
+<div class="row justify-content-center mt-2">
+    <div class="col-6">
+        <h3>Login:</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <fieldset id="username-field">
+                    {{ form.username.label }}
+                    {{ form.username(class="form-control", placeholder="Username...") }}
+                </fieldset>
+                <fieldset id="password-field">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control", placeholder="Password...") }}
+                </fieldset>
+                <br>
+                {{ form.submit(class="btn btn-block btn-info") }}
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock content %}

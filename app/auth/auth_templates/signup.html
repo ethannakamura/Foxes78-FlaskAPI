@@ -3,5 +3,40 @@
 {% block title %}Register{% endblock title %}
 
 {% block content %}
-<h1> Signupsignupsignupsignup.</h1>
+<div class="row justify-content-center mt-2">
+    <div class="col-6">
+        <h3>Register a new user:</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <fieldset id="username-field">
+                    {{ form.username.label }}
+                    {{ form.username(class="form-control", placeholder="Username...") }}
+                </fieldset>
+                <fieldset id="email-field">
+                    {{ form.email.label }}
+                    {{ form.email(class="form-control", placeholder="Email...") }}
+                </fieldset>
+                <fieldset id="fname-field">
+                    {{ form.first_name.label }}
+                    {{ form.first_name(class="form-control", placeholder="First name...") }}
+                </fieldset>
+                <fieldset id="lname-field">
+                    {{ form.last_name.label }}
+                    {{ form.last_name(class="form-control", placeholder="Last name...") }}
+                </fieldset>
+                <fieldset id="password-field">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control", placeholder="Password...") }}
+                </fieldset>
+                <fieldset id="confirm-field">
+                    {{ form.confirm_password.label }}
+                    {{ form.confirm_password(class="form-control", placeholder="Confirm password...") }}
+                </fieldset>
+                <br>
+                {{ form.submit(class="btn btn-block btn-info") }}
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock content %}

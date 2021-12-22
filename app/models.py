@@ -37,3 +37,28 @@ class User(db.Model, UserMixin):
         self.last_name = last_name
         self.password = generate_password_hash(password) # salt and hash this password
         self.id = str(uuid4()) # generate an id in some manner
+
+
+# design a new object - player object - that will be the focus of my API CRUD operations
+# also looking toward the future I'm probably planning to use this model for my ecommerce website
+class Player(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    number = db.Column(db.Integer)
+    first_name = db.Column(db.String(150), nullable=False) # first_name VARCHAR(150) not null
+    last_name = db.Column(db.String(150), nullable=True) # last_name VARCHAR(150)
+    position = db.Column(db.String(15))
+    team = db.Column(db.String(150), nullable=False, default='Free Transfer')
+    nationality = db.Column(db.String(150))
+    transfer_cost = db.Column(db.String(150), nullable=False, default='$0m')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'number': self.number,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'postion': self.position,
+            'team': self.team,
+            'nationality': self.nationality,
+            'transfer_cost': self.transfer_cost
+            }

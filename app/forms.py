@@ -23,3 +23,8 @@ class signinForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField()
+
+class updateUsernameForm(FlaskForm):
+    newusername = StringField('New Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Change Username') 

@@ -25,6 +25,8 @@ migrate = Migrate(app, db)
 # config for our login manager
 login.init_app(app)
 login.login_view = 'auth.signin'
+login.login_message = 'Please sign in to see this page.'
+login.login_message_category = 'danger'
 
 # give this app/flask object access to it's routes
 from . import routes

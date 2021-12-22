@@ -1,8 +1,10 @@
 # if we want to create routes for our app, we need access to our app
 # import the app object we made
+
 from app import app
 # allow flask routes to load html pages with render_template()
 from flask import render_template
+from flask_login import login_required
 
 # creating a route with a decorator that flask understands
 @app.route('/')
@@ -18,6 +20,7 @@ def home():
     return render_template('index.html', **context)
 
 @app.route('/about')
+@login_required
 def about():
     context = {
         'teacher': 'Sam',

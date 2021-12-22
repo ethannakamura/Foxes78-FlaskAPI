@@ -1,0 +1,39 @@
+{% extends 'components/layout.html' %}
+
+{% block title %}{{ current_user.username }}{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+              Hello, {{ current_user.first_name }}.
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item"><strong>Name:</strong> {{ current_user.first_name }} {{ current_user.last_name }}</li>
+              <li class="list-group-item"><strong>Email:</strong> {{ current_user.email }}</li>
+              <li class="list-group-item"><strong>Username:</strong> {{ current_user.username }}</li>
+              <li class="list-group-item"><strong>Account Created:</strong> {{ current_user.created_on }}</li>
+            </ul>
+          </div>
+    </div>
+    <div class="col">
+        <h3>Change Username:</h3>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <fieldset id="username-field">
+                    {{ form.newusername.label }}
+                    {{ form.newusername(class="form-control", placeholder="New Username...") }}
+                </fieldset>
+                <fieldset id="password-field">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control", placeholder="Password...") }}
+                </fieldset>
+                <br>
+                {{ form.submit(class="btn btn-block btn-info") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

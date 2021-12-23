@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models import Player, db
+from .apihelpers import token_required
 
 # actually set up our blueprint and enable communication between our blueprint and the main flask app
 # computers are dumb - if we don't tell the blueprint to exist, it won't exist
@@ -53,6 +54,7 @@ def get_team(tm):
     # they're providing that info in the form of JSON data
 
 @api.route('/createplayer', methods=['POST'])
+@token_required
 def createplayer():
     """
     [POST] /api/createplayer
@@ -93,6 +95,7 @@ def createplayer():
 
 # update route - that lets someone update a player's information
 @api.route('/update/<string:id>', methods=['PUT']) # PUT is used for updating existing things - just like POST, PUT can accept input
+@token_required
 def updateplayer(id):
     """
     [PUT] /api/update/<str:id>
@@ -122,6 +125,7 @@ def updateplayer(id):
 
 # delete route - that lets someone delete a player
 @api.route('/delete/<string:id>', methods=['DELETE'])
+@token_required
 def deleteplayer(id):
     # check if a player of that id exists in the database
     p = Player.query.get(id)

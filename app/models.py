@@ -62,3 +62,47 @@ class Player(db.Model):
             'nationality': self.nationality,
             'transfer_cost': self.transfer_cost
             }
+
+
+    def from_dict(self, dict):
+        """
+        {
+        'number': <int>,
+        'first_name': <str>,
+        'last_name': <str> optional default null,
+        'position': <str>,
+        'team': <str> optional default 'Free Transfer',
+        'nationality': <str>,
+        'transfer_cost': <str> optional default '$0m'
+        }
+        """
+        # the non-optional values which may be updated
+        if dict.get('number'):
+            self.number = dict['number']
+        if dict.get('first_name'):
+            self.first_name = dict['first_name']
+        if dict.get('position'):
+            self.position = dict['position']
+        if dict.get('nationality'):
+            self.nationality = dict['nationality']
+        # id which only should be made for creation not updating
+        if not self.id:
+            self.id = str(uuid4())
+        # originally optional values
+        if dict.get('last_name') != None: # if there is no last_name key - making sure the last_name key doesn't have value ''
+            self.last_name = dict['last_name']
+        elif not self.last_name: # don't set the last name to an empty string if it already has a value
+            self.last_name = ''
+        if dict.get('team'):
+            self.team = dict['team']
+        elif not self.team:
+            self.team = 'Free Transfer'
+        if dict.get('transfer_cost'):
+            self.transfer_cost = dict['transfer_cost']
+        elif not self.transfer_cost:
+            self.transfer_cost = '$0m'
+        
+
+
+
+

@@ -1,5 +1,6 @@
 from flask import Flask
 from config import Config
+from flask_cors import CORS
 
 # import our blueprints
 from .api.routes import api
@@ -11,6 +12,10 @@ from flask_migrate import Migrate
 
 # create/instantiate our flask object (create our flask app)
 app = Flask(__name__)
+
+#allow CORS for this app
+CORS(app, origins=['*'])
+
 # and then configure our flask app based on the Config class
 app.config.from_object(Config)
 

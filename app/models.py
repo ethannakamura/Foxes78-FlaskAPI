@@ -53,6 +53,7 @@ class Player(db.Model):
     team = db.Column(db.String(150), nullable=False, default='Free Transfer')
     nationality = db.Column(db.String(150))
     transfer_cost = db.Column(db.String(150), nullable=False, default='$0m')
+    image = db.Column(db.String(150), default='')
 
     def to_dict(self):
         return {
@@ -63,7 +64,8 @@ class Player(db.Model):
             'postion': self.position,
             'team': self.team,
             'nationality': self.nationality,
-            'transfer_cost': self.transfer_cost
+            'transfer_cost': self.transfer_cost,
+            'image': self.image
             }
 
 
@@ -76,7 +78,8 @@ class Player(db.Model):
         'position': <str>,
         'team': <str> optional default 'Free Transfer',
         'nationality': <str>,
-        'transfer_cost': <str> optional default '$0m'
+        'transfer_cost': <str> optional default '$0m',
+        'image': <str> optional default ''
         }
         """
         # the non-optional values which may be updated
@@ -104,6 +107,10 @@ class Player(db.Model):
             self.transfer_cost = dict['transfer_cost']
         elif not self.transfer_cost:
             self.transfer_cost = '$0m'
+        if dict.get('image'):
+            self.image = dict['image']
+        elif not self.image:
+            self.image = ''
         
 
 

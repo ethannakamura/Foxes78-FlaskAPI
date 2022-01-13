@@ -5,6 +5,7 @@ from flask_cors import CORS
 # import our blueprints
 from .api.routes import api
 from .auth.routes import auth
+from .payments.routes import payments
 
 # imports for our database stuff
 from .models import db, login
@@ -22,6 +23,7 @@ app.config.from_object(Config)
 # register our blueprint - create that link of communication
 app.register_blueprint(api)
 app.register_blueprint(auth)
+app.register_blueprint(payments)
 
 # set up our ORM and Migrate connections
 db.init_app(app)

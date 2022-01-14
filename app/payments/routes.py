@@ -12,10 +12,13 @@ def create_payment():
     try:
         data = json.loads(request.data)
         # Create a PaymentIntent with the order amount and currency
-        try:
-            user = stripe.Customer.retrieve(data[1]['uid'])
-        except:
-            user = stripe.Customer.create(email=data[1]['email'], name=data[1]['displayName'], id=data[1]['uid'])
+        if (data[1] != 'guest'):
+            try:
+                user = stripe.Customer.retrieve(data[1]['uid'])
+            except:
+                user = stripe.Customer.create(email=data[1]['email'], name=data[1]['displayName'], id=data[1]['uid'])
+        else:
+            user = None
         
         intent = stripe.PaymentIntent.create(
             amount=int(data[0]['total']*100), # i'll do this differently -> decide if i want to just use my cart total from the client or if I want to calculate total here
